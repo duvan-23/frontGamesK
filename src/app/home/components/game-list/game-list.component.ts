@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '@shared/services/auth.service';
-import { GamesService } from 'app/games/services/games.service';
+import { GamesService } from 'app/home/services/games.service';
 import { GameComponent } from '../game/game.component';
 import { PaginatorComponent } from '../paginator/paginator.component';
 import { SearchComponent } from '../search/search.component';

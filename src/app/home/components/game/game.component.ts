@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
-import { Game } from 'app/games/models/game';
+import { Game } from 'app/home/models/game';
 
 @Component({
   selector: 'app-game',
