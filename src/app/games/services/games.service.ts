@@ -12,7 +12,7 @@ export class GamesService {
   apiUrl = environment.API_URL;
   games= signal<Game[]>([]);
   gamesFilterPage= signal<Game[]>([]);
-  pageSize = 9; 
+  pageSize = 8; 
   pageNumber = signal(1);
   pageTotal = signal(0);
 
