@@ -1,0 +1,28 @@
+<div class="flex flex-col ">
+  <div class="w-full md:w-80">
+      <app-search 
+          (searchName)="searchName($event)"/>
+  </div>
+  <div class="flex flex-col w-full ">
+      <div class="flex flex-col mt-5 min-h-[460px]">
+          <div class="flex justify-between items-center mx-4 ">
+              <div></div>
+              <h3 >Page {{pageNumber()}} of {{pageTotal()}}</h3>
+              <h5 >Total items {{games().length}} </h5>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-8 w-full mt-2">
+              @for (item of games(); track $index) {
+                  <app-game
+                    [game]="item"/>
+              }
+          </div>
+      </div>
+      <div class="flex justify-center">
+          <app-paginator 
+              [totalItems]="games().length"
+              [pageSize]="pageSize"
+              (pageChange)="onPageChange($event)">
+          </app-paginator>
+      </div>
+  </div>
+</div>
