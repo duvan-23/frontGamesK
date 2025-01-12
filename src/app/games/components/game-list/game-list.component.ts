@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthService } from '@shared/services/auth.service';
 import { GamesService } from 'app/games/services/games.service';
 import { GameComponent } from '../game/game.component';
@@ -22,6 +22,7 @@ export class GameListComponent {
   pageTotal = this.gamesService.pageTotal;
   pageSize =  this.gamesService.pageSize; 
   games=this.gamesService.games;
+  gamesFilterPage=this.gamesService.gamesFilterPage;
   ngOnInit(): void {
     this.authService.login().subscribe(
       () => {
