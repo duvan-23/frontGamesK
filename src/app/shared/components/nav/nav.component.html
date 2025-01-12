@@ -1,0 +1,48 @@
+<nav class="fixed top-0 left-0 w-full bg-blue-950 shadow-2xl z-20">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center space-x-2">
+        <img
+          src="assets/logo_casino.jpeg"
+          alt="Logo"
+          class="h-12 w-auto object-contain rounded-lg hover:scale-110 transition-all duration-300"
+        />
+        <span class="text-white font-bold italic text-xl tracking-wider pl-3 ">Casino online</span>
+      </a>
+  
+      <button
+        class="text-white block md:hidden focus:outline-none"
+        (click)="toggleMenu()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-8 h-8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 5.75h16.5m-16.5 6.5h16.5m-16.5 6.5h16.5"
+          />
+        </svg>
+      </button>
+  
+      <div class="hidden md:flex space-x-8 text-white font-medium text-lg">
+        <a href="/" class="hover:text-gray-300 transition-all duration-300  hover:scale-110">Home</a>
+        <a href="/games" class="hover:text-gray-300 transition-all duration-300  hover:scale-110">Games</a>
+        <a href="/about" class="hover:text-gray-300 transition-all duration-300  hover:scale-110">Services</a>
+      </div>
+    </div>
+  
+    <div
+      class="md:hidden bg-blue-950 text-white font-medium px-6 py-4 space-y-4 transition-all duration-300"
+      [ngClass]="{ hidden: !menuOpen, block: menuOpen }"
+    >
+      <a href="/" class="block hover:text-gray-300 transition-all duration-300 ">Home</a>
+      <a href="/games" class="block hover:text-gray-300 transition-all duration-300 ">Games</a>
+      <a href="/about" class="block hover:text-gray-300 transition-all duration-300 ">Services</a>
+    </div>
+</nav>
+  
