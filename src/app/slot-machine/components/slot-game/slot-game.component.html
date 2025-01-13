@@ -1,0 +1,11 @@
+<div class="slot-machine">
+    <div class="reel-container">
+      <div class="reel" *ngFor="let reel of reels; let i = index">
+        <div class="box" *ngFor="let item of reel; let j = index" [ngClass]="{'highlight': j === 2}">
+          {{ item }}
+        </div>
+      </div>
+    </div>
+    <button (click)="spin()">Spin</button>
+    <div class="result-label" *ngIf="result">{{ result }}</div>
+  </div>

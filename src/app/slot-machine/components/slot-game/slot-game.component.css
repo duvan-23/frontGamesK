@@ -1,0 +1,26 @@
+.slot-machine {
+    @apply flex flex-col items-center relative; /* Add relative positioning */
+  }
+  
+  .reel-container {
+    @apply flex;
+    overflow: hidden; /* Hide overflow for a clean look */
+    position: relative; /* Ensure the container is positioned */
+  }
+  
+  .reel {
+    @apply w-20 h-60 flex flex-col relative; /* Keep the reel fixed */
+  }
+  
+  .box {
+    @apply h-10 flex items-center justify-center border border-gray-300 bg-white; /* Item styling */
+    position: relative; /* Position relative to allow stacking */
+  }
+  
+  .highlight {
+    border: 2px solid red; /* Red border for the highlighted row */
+  }
+  
+  .result-label {
+    @apply mt-4 text-lg font-bold; /* Style the result label */
+  }
