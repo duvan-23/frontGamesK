@@ -25,18 +25,33 @@ export class SlotGameComponent {
     const finalItems: string[] = [];
 
     this.reels.forEach((reel, index) => {
-      // Animate the entire reel
-      tl.to(`.reel:nth-child(${index + 1})`, {
-        y: -200, // Move up
-        duration: 0.5, // Faster movement
-        ease: 'power2.inOut',
-        onComplete: () => {
-          // Randomize items and get the third item for the result
-          this.reels[index] = this.getRandomItems();
-          finalItems.push(this.reels[index][2]); // Get the third item (index 2) for the result
-          gsap.set(`.reel:nth-child(${index + 1})`, { y: 0 }); // Reset position
-        }
-      });
+      // Duplicate the items for a seamless loop effect
+      const items = [...reel, ...reel, ...reel]; // Duplicate items
+      const totalItems = items.length;
+      const itemHeight = 40; // Height of each item
+      const spinDistance = itemHeight * totalItems; // Total distance to spin
+
+      // Select the reel element
+      const reelElement = document.querySelector(`.reel:nth-child(${index + 1})`);
+
+      // Check if reelElement is not null
+      if (reelElement) {
+        // Set the reel's HTML to the duplicated items
+        reelElement.innerHTML = items.map(item => `<div class="box">${item}</div>`).join('');
+
+        // Animate the reel
+        tl.to(reelElement, {
+          y: -spinDistance, // Move up by the height of all items
+          duration: 1, // Duration of the spin
+          ease: 'power2.inOut',
+          onComplete: () => {
+            // Randomize items after the spin
+            this.reels[index] = this.getRandomItems();
+            finalItems.push(this.reels[index][2]); // Get the third item (index 2) for the result
+            gsap.set(reelElement, { y: 0 }); // Reset position
+          }
+        });
+      }
     });
 
     // After the animation completes, set the result
