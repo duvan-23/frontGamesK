@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '@shared/services/auth.service';
 import { GamesService } from 'app/home/services/games.service';
 import { GameComponent } from '../game/game.component';
 import { PaginatorComponent } from '../paginator/paginator.component';
@@ -14,8 +13,6 @@ import { SearchComponent } from '../search/search.component';
 })
 export class GameListComponent {
  
-
-  authService = inject(AuthService);
   gamesService = inject(GamesService);
 
   pageNumber = this.gamesService.pageNumber;
@@ -23,13 +20,11 @@ export class GameListComponent {
   pageSize =  this.gamesService.pageSize; 
   games=this.gamesService.games;
   gamesFilterPage=this.gamesService.gamesFilterPage;
+
   ngOnInit(): void {
-    this.authService.login().subscribe(
-      () => {
-        this.getGames();
-      }
-    );
+    this.getGames();
   }
+
   getGames(){
     this.gamesService.getGames().subscribe({
       next:(data) => {
