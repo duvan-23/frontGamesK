@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '@shared/services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,7 @@ import { Router, RouterModule } from '@angular/router';
 export class NavComponent {
   menuOpen = false;
   private router = inject(Router);
-
+  authService = inject(AuthService);
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
@@ -21,5 +22,10 @@ export class NavComponent {
     if (this.router.url === targetUrl) {
       event.preventDefault(); // Prevent the default navigation
     }
+  }
+
+  logOut() {
+    this.authService.logOut();
+    this.router.navigate(['/login']);
   }
 }
