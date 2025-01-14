@@ -5,7 +5,7 @@ import { environment } from '@enviroment';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
-  const token = authService.token();
+  const token = authService.getToken();
   
   if (token && !(environment.URL_EXCEPTION.some((url) => req.url.includes(url)))) {
     // Clone the request and add the Authorization header with the Bearer token
