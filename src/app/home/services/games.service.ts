@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
-import { Game } from '../models/game';
+import { IGame } from '../models/game';
 import { environment } from '@enviroment';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -10,17 +9,17 @@ export class GamesService {
 
   http= inject(HttpClient);
   apiUrl = environment.API_URL;
-  games= signal<Game[]>([]);
-  gamesFilterPage= signal<Game[]>([]);
+  games= signal<IGame[]>([]);
+  gamesFilterPage= signal<IGame[]>([]);
   pageSize = 8; 
   pageNumber = signal(1);
   pageTotal = signal(0);
-
+  
   getGames(){
-    return this.http.get<Game[]>(`${this.apiUrl}games`);
+    return this.http.get<IGame[]>(`${this.apiUrl}games`);
   }
 
-  setGames(games: Game[]){
+  setGames(games: IGame[]){
     this.games.set(games);
   }
 
@@ -39,7 +38,7 @@ export class GamesService {
   }
 
   filterDataByName(name:string){
-    this.http.get<Game[]>(`${this.apiUrl}games/${name}`).subscribe((data) => {
+    this.http.get<IGame[]>(`${this.apiUrl}games/${name}`).subscribe((data) => {
       this.games.set(data);
       this.filterDataByPage(1);
       const total = this.games().length>0?Math.ceil(this.games().length / this.pageSize):0;

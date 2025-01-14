@@ -1,11 +1,11 @@
-export interface Game {
+export interface IGame {
     id: string;
     slug: string;
     title: string;
     providerName: string;
-    thumb: Thumb | null
+    thumb: IThumb | null
 }
 
-interface Thumb{
+interface IThumb{
     url: string;
 }
