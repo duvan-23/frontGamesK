@@ -1,5 +1,6 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { SlotMachineService } from 'app/slot-machine/services/slot-machine.service';
 import gsap from 'gsap';
 
 @Component({
@@ -10,14 +11,23 @@ import gsap from 'gsap';
   styleUrl: './slot-game.component.css'
 })
 export class SlotGameComponent {
-  reels = [
-    ['🍒', '🍋', '🍊', '🍉', '🍇'],
-    ['🍒', '🍋', '🍊', '🍉', '🍇'],
-    ['🍒', '🍋', '🍊', '🍉', '🍇']
-  ];
-  result: string = '';
 
+  reels: string[][]= [];
+  result: string = '';
+  showWin = false;
+  coins = 0;
+  slotService = inject(SlotMachineService);
+  fruits: string[] = [];
+  ngOnInit(){
+    this.slotService.getParametersGame().subscribe((data) => {
+      this.reels = data.reels;
+      this.fruits = data.fruits;
+      this.coins = this.slotService.getCoins();
+    });
+  }
+  
   spin() {
+    this.showWin = false;
     const tl = gsap.timeline();
     this.result = ''; // Reset result before spin
 
@@ -32,36 +42,38 @@ export class SlotGameComponent {
       const spinDistance = itemHeight * totalItems; // Total distance to spin
 
       // Select the reel element
-      const reelElement = document.querySelector(`.reel:nth-child(${index + 1})`);
-
-      // Check if reelElement is not null
-      if (reelElement) {
-        // Set the reel's HTML to the duplicated items
-        reelElement.innerHTML = items.map(item => `<div class="box">${item}</div>`).join('');
-
-        // Animate the reel
-        tl.to(reelElement, {
-          y: -spinDistance, // Move up by the height of all items
-          duration: 1, // Duration of the spin
-          ease: 'power2.inOut',
-          onComplete: () => {
-            // Randomize items after the spin
-            this.reels[index] = this.getRandomItems();
-            finalItems.push(this.reels[index][2]); // Get the third item (index 2) for the result
-            gsap.set(reelElement, { y: 0 }); // Reset position
-          }
-        });
-      }
+      this.reels[index] = items;
+      // Animate the reel
+      tl.to(`.reel:nth-child(${index + 1})`, {
+        y: -spinDistance, // Move up by the height of all items
+        duration: 0.8, // Duration of the spin
+        ease: 'power2.inOut',
+        onComplete: () => {
+          // Randomize items after the spin and reset position
+          const newItems = this.getRandomItems();
+          finalItems.push(newItems[1]); // Get the third item (index 2) for the result
+          this.reels[index] = newItems; // Update the reel array
+          gsap.set(`.reel:nth-child(${index + 1})`, { y: 0 }); // Reset position
+        }
+      });
     });
 
     // After the animation completes, set the result
     tl.eventCallback("onComplete", () => {
-      this.result = finalItems.join(' | '); // Join the final items for display
+      this.showWin = true;
+      let data = {
+        result: finalItems,
+        coins: this.coins
+      };
+      this.slotService.setResult(data).subscribe((data) => {
+        this.coins = this.slotService.getCoins();
+        this.result = data.text;
+      });
     });
   }
 
   getRandomItems() {
-    const items = ['🍒', '🍋', '🍊', '🍉', '🍇'];
-    return Array.from({ length: 5 }, () => items[Math.floor(Math.random() * items.length)]);
+    const items = this.fruits;
+    return Array.from({ length: this.fruits.length }, () => items[Math.floor(Math.random() * items.length)]);
   }
 }

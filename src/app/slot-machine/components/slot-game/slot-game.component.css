@@ -1,30 +1,16 @@
-.slot-machine {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative; /* Add relative positioning */
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 255, 0, 0.8);
   }
-  
-  .reel-container {
-    display: flex;
-    overflow: hidden; /* Hide overflow for a clean look */
-    position: relative; /* Ensure the container is positioned */
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 0, 1);
   }
-  
-  .reel {
-    width: 80px; /* Adjust width as needed */
-    height: 200px; /* Adjust height as needed */
-    display: flex;
-    flex-direction: column;
-    position: relative; /* Keep the reel fixed */
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 0, 0.8);
   }
-  
-  .box {
-    height: 40px; /* Height of each item */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .highlight {
-    border: 2px solid red; /* Red border for the highlighted row */
-  }
+}
+
+.highlight {
+  animation: glow 1.5s infinite;
+}
