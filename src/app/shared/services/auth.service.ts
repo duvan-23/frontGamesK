@@ -15,10 +15,10 @@ export class AuthService {
   http= inject(HttpClient);
   private platformId = inject(PLATFORM_ID);
 
-  login(){
+  login(user:string, password:string){
     return this.http.post<Auth>(`${this.apiUrl}auth/login`,{
-      username: environment.USERLOGIN,
-      password: environment.PASSWORDLOGIN
+      username: user,
+      password: password
     }).pipe(
       tap((data) => {
         if(data.token){
