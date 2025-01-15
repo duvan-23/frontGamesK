@@ -32,7 +32,7 @@ export class SlotMachineService {
       ...data
     }).pipe(
       tap((data) => {
-        if(data.coins){
+        if(data){
           this.saveCoins(data.coins);
         }
       })
