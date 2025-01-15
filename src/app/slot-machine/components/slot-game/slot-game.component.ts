@@ -23,8 +23,8 @@ export class SlotGameComponent {
   dialog = inject(MatDialog);
   ngOnInit(){
     this.slotService.getParametersGame().subscribe((data) => {
-      this.reels = data.reels;
-      this.fruits = data.fruits;
+      this.reels = data.parameters.reels;
+      this.fruits = data.parameters.fruits;
       this.coins = this.slotService.getCoins();
     });
   }
@@ -71,7 +71,7 @@ export class SlotGameComponent {
       };
       this.slotService.setResult(data).subscribe((data) => {
         this.coins = this.slotService.getCoins();
-        this.result = data.text;
+        this.result = data.parameters.text;
       });
     });
   }

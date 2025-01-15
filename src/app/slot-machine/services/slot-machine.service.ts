@@ -18,9 +18,9 @@ export class SlotMachineService {
   getParametersGame(){
     return this.http.get<ISlotMachine>(`${this.apiUrl}slot-machine`).pipe(
       tap((data) => {
-        if(data.coins){
+        if(data.parameters.coins){
           if (this.getCoins() === 0 ) {
-            this.saveCoins(data.coins);
+            this.saveCoins(data.parameters.coins);
           }
         }
       })
@@ -33,7 +33,7 @@ export class SlotMachineService {
     }).pipe(
       tap((data) => {
         if(data){
-          this.saveCoins(data.coins);
+          this.saveCoins(data.parameters.coins);
         }
       })
     );

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
-import { IGame } from 'app/home/models/game';
+import { IPropertiesGame } from 'app/home/models/game';
 
 @Component({
   selector: 'app-game',
@@ -10,7 +10,7 @@ import { IGame } from 'app/home/models/game';
   templateUrl: './game.component.html'
 })
 export class GameComponent {
-  @Input ({required: true}) game!: IGame;
+  @Input ({required: true}) game!: IPropertiesGame;
 
   seeDetails() {
 

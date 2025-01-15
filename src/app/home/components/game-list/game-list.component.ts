@@ -28,7 +28,7 @@ export class GameListComponent {
   getGames(){
     this.gamesService.getGames().subscribe({
       next:(data) => {
-        this.gamesService.games.set(data);
+        this.gamesService.games.set(data.games);
         this.gamesService.filterDataByPage(this.pageNumber());
         this.gamesService.pageTotal.set(Math.ceil(this.games().length / this.pageSize));
       },
