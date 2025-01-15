@@ -1,0 +1,43 @@
+<div class="currency/container p-6 bg-blue-950 shadow-black shadow-md rounded-lg">
+    <div class="flex justify-between items-center mb-1">
+      <h2 class="text-xl text-white font-medium">Currency exchange</h2>
+      <button mat-icon-button (click)="onClose()">
+        <mat-icon class="text-blue-200">close</mat-icon>
+      </button>
+    </div>
+    <mat-divider class="bg-white"></mat-divider>
+    <div mat-dialog-content >
+      <form [formGroup]="form" class="w-[57%] mx-auto mt-5">
+        <mat-form-field class="w-[97%]">
+          <mat-label class="text-white">Select a currency</mat-label>
+          <mat-select formControlName="selectedOption" [ngClass]="'bg-gray-400'" (selectionChange)="currencyChange()">
+            @for (option of currencyTypes; track option) {
+              <mat-option [value]="option.value">{{option.label}}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="form.get('selectedOption')?.hasError('required')" class="text-white">
+            Please select an option
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <div class="w-[57%]  p-1 mx-auto">
+        <label  class="block text-sm font-medium  mb-1 text-white">
+          1 € is equal to
+        </label>
+        <p class="bg-gray-500 p-3 rounded-lg text-white">{{ currencyValue }}</p>
+      </div>
+      <div class="w-[57%]  p-1 mx-auto">
+        <label  class="block text-sm font-medium  mb-1 text-white">
+          Current coins (€)
+        </label>
+        <p class="bg-gray-500 p-3 rounded-lg text-white">{{ coins }}</p>
+      </div>
+      <div class="w-[57%]  p-1 mx-auto">
+        <label  class="block text-sm font-medium mb-1 text-white">
+          Convertion
+        </label>
+        <p class="bg-gray-500 p-3 rounded-lg text-white">{{ calculate }}</p>
+      </div>
+    </div>
+  </div>
+  
