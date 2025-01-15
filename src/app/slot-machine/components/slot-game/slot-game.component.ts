@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { SlotMachineService } from 'app/slot-machine/services/slot-machine.service';
 import gsap from 'gsap';
-
+import { MatDialog } from '@angular/material/dialog';
+import { CurrencyComponent } from '../currency/currency.component';
 @Component({
   selector: 'app-slot-game',
   standalone: true,
@@ -18,6 +19,8 @@ export class SlotGameComponent {
   coins = 0;
   slotService = inject(SlotMachineService);
   fruits: string[] = [];
+
+  dialog = inject(MatDialog);
   ngOnInit(){
     this.slotService.getParametersGame().subscribe((data) => {
       this.reels = data.reels;
@@ -26,7 +29,8 @@ export class SlotGameComponent {
     });
   }
   
-  spin() {
+  spin(event: Event) {
+    event.preventDefault();
     this.showWin = false;
     const tl = gsap.timeline();
     this.result = ''; // Reset result before spin
@@ -75,5 +79,17 @@ export class SlotGameComponent {
   getRandomItems() {
     const items = this.fruits;
     return Array.from({ length: this.fruits.length }, () => items[Math.floor(Math.random() * items.length)]);
+  }
+
+  openDialogCurrency(event: Event) {
+    event.preventDefault();
+    const dialogRef = this.dialog.open(CurrencyComponent, {
+      width: '420px',
+      data: { message: 'This is a custom dialog with a close button and action buttons.' }, // Pass data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('Dialog closed with result:', result);
+    });
   }
 }

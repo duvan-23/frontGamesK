@@ -1,18 +1,22 @@
 <div
-  class=" bg-no-repeat bg-cover bg-center py-10 px-5 rounded-lg shadow-2xl relative h-full w-full"
+  class=" bg-no-repeat bg-cover bg-center py-10 md:pb-5 px-5 rounded-lg shadow-2xl relative h-full w-full "
   style="background-image: url('assets/casino.jpeg')"
 >
 
   <div
-    class="absolute top-4 right-4 bg-black bg-opacity-90 text-yellow-300 font-digital text-lg md:text-xl rounded-lg px-4 py-1 md:px-6 md:py-2 shadow-lg border border-yellow-500 flex items-center space-x-2"
+    class="absolute top-4 right-4 bg-black bg-opacity-90 text-yellow-300 font-digital text-lg md:text-xl rounded-lg px-4 py-1 md:px-6 md:pt-2 shadow-lg border border-yellow-500 flex items-center space-x-2"
   >
     <span class="text-yellow-400 text-xl md:text-2xl">💰</span>
     <span>{{ coins }}</span>
   </div>
 
   <div
-    class="flex flex-row md:space-y-0 md:space-x-6 p-4 md:p-6 bg-black bg-opacity-80 rounded-lg shadow-inner overflow-hidden w-[220px] h-[270px] md:w-[340px] md:h-[285px] mx-auto mt-6 md:mt-0"
+    class="flex flex-row md:space-y-0 md:space-x-6 p-4 md:p-6 bg-black bg-opacity-80 rounded-lg shadow-inner overflow-hidden w-[276px] h-[270px] md:w-[430px] md:h-[285px] mx-auto mt-6 md:mt-0"
   >
+    <!-- Arrow Column -->
+    <div class="flex items-center justify-center w-6 ">
+      <div class="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-l-[15px] border-l-red-500"></div>
+    </div>
     <div class="h-full" *ngFor="let reel of reels; let i = index">
       <div
         class="h-20 flex items-center justify-center mb-2"
@@ -26,21 +30,38 @@
         </div>
       </div>
     </div>
+    <!-- Arrow Column -->
+    <div class="flex items-center justify-center w-6 ">
+      <div class="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-r-[15px] border-r-red-500"></div>
+    </div>
   </div>
 
-  <button
-    (click)="spin()"
-    [disabled]="!(coins > 0)"
-    class="mt-6 px-6 py-3 md:mt-8 md:px-8 md:py-4 bg-gradient-to-r from-red-500 via-yellow-400 to-red-500 text-white font-extrabold rounded-full shadow-lg hover:shadow-2xl transition-transform transform hover:scale-110 relative mx-auto block"
-  >
-    <span
-      class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-500 via-red-500 to-yellow-500 blur-md opacity-75 animate-pulse"
-    ></span>
-    <span class="relative z-10">Spin</span>
-  </button>
+  <div class="flex flex-col md:flex-row justify-center items-center space-x-2 md:space-x-5 ">
+    <button
+      (click)="spin($event)"
+      [disabled]="!(coins > 0)"
+      [ngClass]=" { 'hover:scale-110': coins > 0, 'bg-gradient-to-r from-yellow-500 via-red-500 to-yellow-500': coins > 0 , 'bg-gray-400': !(coins > 0) }"
+      class="mt-6 px-6 py-3 md:mt-8 md:px-8 md:py-4  text-white font-medium rounded-full shadow-lg hover:shadow-2xl transition-transform transform  relative"
+    >
+      <span
+      *ngIf="coins > 0"
+        class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-500 via-red-500 to-yellow-500 blur-md opacity-75 animate-pulse"
+      ></span>
+      <span class="relative z-10">Spin</span>
+    </button>
+
+    <button
+      (click)="openDialogCurrency($event)"
+      [disabled]="!(coins > 0)"
+      [ngClass]=" { 'hover:scale-110': coins > 0, 'bg-gradient-to-r from-blue-600 via-purple-500 to-blue-600': coins > 0 , 'bg-gray-400': !(coins > 0) }"
+      class="mt-6 px-6 py-3 md:mt-8 md:px-8 md:py-4 text-white font-medium rounded-full shadow-lg hover:shadow-2xl transition-transform transform relative "
+    >
+      Change currency
+    </button>
+  </div>
 
   <div
-    class="min-h-[80px] mt-4 sm:mt-6 mx-auto text-center bg-black bg-opacity-90 text-red-300 font-digital text-lg md:text-xl rounded-lg px-4 py-1 md:px-6 md:py-2 shadow-lg border border-red-500 flex items-center justify-center w-[220px] md:w-[340px]"
+    class="h-[110px] md:h-[70px] mt-4 sm:mt-6 mx-auto text-center bg-black bg-opacity-90 text-red-300 font-digital text-lg md:text-xl rounded-lg px-4 py-1 md:px-6 md:py-2 shadow-lg border border-red-500 flex items-center justify-center w-[220px] md:w-[340px]"
   >
     {{ result }}
   </div>
