@@ -83,13 +83,10 @@ export class SlotGameComponent {
 
   openDialogCurrency(event: Event) {
     event.preventDefault();
-    const dialogRef = this.dialog.open(CurrencyComponent, {
-      width: '420px',
-      data: { message: 'This is a custom dialog with a close button and action buttons.' }, // Pass data to the dialog
+    this.dialog.open(CurrencyComponent, {
+      width: '420px'
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('Dialog closed with result:', result);
-    });
   }
+
 }
