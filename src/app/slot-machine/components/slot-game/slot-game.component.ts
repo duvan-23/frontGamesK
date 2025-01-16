@@ -4,6 +4,7 @@ import { SlotMachineService } from 'app/slot-machine/services/slot-machine.servi
 import gsap from 'gsap';
 import { MatDialog } from '@angular/material/dialog';
 import { CurrencyComponent } from '../currency/currency.component';
+import confetti from 'canvas-confetti';
 @Component({
   selector: 'app-slot-game',
   standalone: true,
@@ -13,7 +14,11 @@ import { CurrencyComponent } from '../currency/currency.component';
 })
 export class SlotGameComponent {
 
-  reels: string[][]= [];
+  reels: string[][]= [
+    ['🍎','🍎','🍎','🍎','🍎','🍎','🍎','🍎'],
+    ['🍎','🍎','🍎','🍎','🍎','🍎','🍎','🍎'],
+    ['🍎','🍎','🍎','🍎','🍎','🍎','🍎','🍎']
+  ];
   result: string = '';
   showWin = false;
   coins = 0;
@@ -72,6 +77,9 @@ export class SlotGameComponent {
       this.slotService.setResult(data).subscribe((data) => {
         this.coins = this.slotService.getCoins();
         this.result = data.parameters.text;
+        if(data.parameters.won){
+          this.launchConfetti();
+        }
       });
     });
   }
@@ -87,6 +95,13 @@ export class SlotGameComponent {
       width: '420px'
     });
 
+  }
+  launchConfetti() {
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
   }
 
 }
