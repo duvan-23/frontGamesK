@@ -28,24 +28,28 @@ export class CurrencyComponent {
   
   ngOnInit(){
     this.form = this.fb.group({
-      selectedOption: ['',Validators.required], // Default value can be set here
+      selectedOption: ['',Validators.required], // set validator required
     });
+    //Get currency list
     this.currencyService.getCurrency().subscribe((res) => {
+      //Change format to {label, value} to display 
       this.currencyTypes = Object.entries(res.data).map(([key, value]) => ({
         label:key,
         value,
       })); 
     });
+    //Get current coins
     this.coins = this.slotService.getCoins();
   }
 
   onClose(): void {
-    this.dialogRef.close();  // Close the dialog when needed
+    this.dialogRef.close();  // Close the dialog
   }
 
   currencyChange(){
     let {selectedOption} = this.form.value;
     this.currencyValue = selectedOption;
-    this.calculate = +(selectedOption * this.coins).toFixed(6);
+    //Calculate currency exchange
+    this.calculate = +(selectedOption * this.coins).toFixed(6);//Format response to 6 decimals
   }
 }

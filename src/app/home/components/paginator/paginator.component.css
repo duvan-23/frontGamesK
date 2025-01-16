@@ -1,15 +1,15 @@
-mat-paginator{
-    background-color: transparent;
-    color:white;
-    font-size: medium
+mat-paginator {
+  background-color: transparent;
+  color: white;
+  font-size: medium;
 }
-::ng-deep .mat-mdc-paginator-navigation-next .mat-mdc-paginator-icon{
-    height: 26px;
-    width: 26px;
-    fill: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
-  } 
-::ng-deep .mat-mdc-paginator-navigation-previous .mat-mdc-paginator-icon{
-    height: 26px;
-    width: 26px;
-    fill: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
-  } 
+::ng-deep .mat-mdc-paginator-navigation-next .mat-mdc-paginator-icon {
+  height: 26px;
+  width: 26px;
+  fill: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
+}
+::ng-deep .mat-mdc-paginator-navigation-previous .mat-mdc-paginator-icon {
+  height: 26px;
+  width: 26px;
+  fill: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
+}

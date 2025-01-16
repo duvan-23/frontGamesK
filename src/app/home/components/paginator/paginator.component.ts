@@ -17,11 +17,14 @@ export class PaginatorComponent {
   private paginatorIntl= inject( MatPaginatorIntl);
 
   ngOnChanges(changes: SimpleChanges){
+    //Check there are changes on totalItems input and paginator exist
     if (changes["totalItems"] && this.paginator) {
+      //Restart page index
       this.paginator.pageIndex = 0;
     }
   }
   ngAfterViewInit() {
+    //Settings paginator
     this.paginatorIntl.getRangeLabel = this.getRangeLabel.bind(this);
     this.paginatorIntl.previousPageLabel = ''; 
     this.paginatorIntl.nextPageLabel = ''; 
@@ -30,11 +33,13 @@ export class PaginatorComponent {
   }
 
   getRangeLabel(page: number, pageSize: number, length: number): string {
+    //Custom paginator label
     const total = Math.ceil(length / pageSize);
     return `Page ${page+1} of ${total}`;
   }
 
   pageChanged(event: PageEvent): void {
+    //Emit change page
     this.pageChange.emit(event.pageIndex + 1);
   }
 }

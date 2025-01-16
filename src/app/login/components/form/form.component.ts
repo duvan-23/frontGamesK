@@ -22,21 +22,26 @@ export class FormComponent {
   private _snackBar = inject(MatSnackBar);
 
   loginForm = this.fb.group({
-    username: ['admin', [Validators.required, Validators.minLength(4)]],
-    password: ['5678', [Validators.required, Validators.minLength(4)]],
+    username: ['admin', [Validators.required, Validators.minLength(4)]],//set defaul values,validator required and min length
+    password: ['5678', [Validators.required, Validators.minLength(4)]],//set defaul values,validator required and min length
   });
   passwordVisible = false; 
 
+  //Show or hide password
   togglePasswordVisibility(): void {
     this.passwordVisible = !this.passwordVisible;
   }
+
   onSubmit(){
     let {username, password} = this.loginForm.value;
     if (username && password) {
+      //Login
       this.authService.login(username, password).subscribe({
         next: () => {
+          //Success, redirect to home
           this.router.navigate(['/']);
         }, error: () => {
+          //Error, show alert
           this._snackBar.open('Invalid credentials', "close", {duration: 2000, panelClass: ['alert-login']});
         }});
     }

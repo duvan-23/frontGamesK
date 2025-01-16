@@ -15,14 +15,16 @@ export class GamesService {
   pageNumber = signal(1);
   pageTotal = signal(0);
   
+  //Get games
   getGames(){
     return this.http.get<IGame>(`${this.apiUrl}games`);
   }
-
+  //Set games
   setGames(games: IPropertiesGame[]){
     this.games.set(games);
   }
 
+  //Get games depending on page number
   filterDataByPage(pageNumber: number){
     this.pageNumber.set(pageNumber);
     let num = this.games().length;
@@ -37,6 +39,7 @@ export class GamesService {
     this.gamesFilterPage.set(data);
   }
 
+  //Get games with filter
   filterDataByName(name:string){
     this.http.get<IGame>(`${this.apiUrl}games/${name}`).subscribe((data) => {
       this.games.set(data.games);

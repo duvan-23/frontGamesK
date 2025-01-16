@@ -15,10 +15,12 @@ export class SlotMachineService {
   http= inject(HttpClient);
   private platformId = inject(PLATFORM_ID);
 
+  //Get initial parameters
   getParametersGame(){
     return this.http.get<ISlotMachine>(`${this.apiUrl}slot-machine`).pipe(
       tap((data) => {
         if(data.parameters.coins){
+          //Check if it have previous coins
           if (this.getCoins() === 0 ) {
             this.saveCoins(data.parameters.coins);
           }
@@ -27,12 +29,14 @@ export class SlotMachineService {
     );
   }
 
+  //Put calculate spin result
   setResult(data:ICalculateResult){
     return this.http.put<IResponse>(`${this.apiUrl}slot-machine`,{
       ...data
     }).pipe(
       tap((data) => {
         if(data){
+          //Save coins
           this.saveCoins(data.parameters.coins);
         }
       })
@@ -41,6 +45,7 @@ export class SlotMachineService {
 
   saveCoins(coins:number){
     if (isPlatformBrowser(this.platformId)) {
+      //Set coins cookie
       setCookie('coins', coins, { expires: 1, path: '/', sameSite: 'Strict' });
     }
     
@@ -48,6 +53,7 @@ export class SlotMachineService {
 
   getCoins():number{
     if (isPlatformBrowser(this.platformId)) {
+      //Get coins cookie
       return +(getCookie('coins')|| 0);
     }
     return 0;

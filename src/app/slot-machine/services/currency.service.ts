@@ -10,6 +10,7 @@ export class CurrencyService {
   apiUrl = environment.API_URL;
   http= inject(HttpClient);
 
+  //Get currency list
   getCurrency(){
     return this.http.get<ICurrency>(`${this.apiUrl}currency`);
   }

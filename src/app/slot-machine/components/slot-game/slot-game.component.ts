@@ -18,15 +18,16 @@ export class SlotGameComponent {
     ['🍎','🍎','🍎','🍎','🍎','🍎','🍎','🍎'],
     ['🍎','🍎','🍎','🍎','🍎','🍎','🍎','🍎'],
     ['🍎','🍎','🍎','🍎','🍎','🍎','🍎','🍎']
-  ];
+  ];//Default reels
   result: string = '';
   showWin = false;
   coins = 0;
   slotService = inject(SlotMachineService);
   fruits: string[] = [];
-
   dialog = inject(MatDialog);
+
   ngOnInit(){
+    //Get initial parameters
     this.slotService.getParametersGame().subscribe((data) => {
       this.reels = data.parameters.reels;
       this.fruits = data.parameters.fruits;
@@ -34,6 +35,7 @@ export class SlotGameComponent {
     });
   }
   
+  //Spin
   spin(event: Event) {
     event.preventDefault();
     this.showWin = false;
@@ -74,29 +76,36 @@ export class SlotGameComponent {
         result: finalItems,
         coins: this.coins
       };
+      //Caulculate spin result
       this.slotService.setResult(data).subscribe((data) => {
         this.coins = this.slotService.getCoins();
         this.result = data.parameters.text;
         if(data.parameters.won){
+          //Won, it shows an animation
           this.launchConfetti();
         }
       });
     });
   }
 
+  //Set random items on the reels
   getRandomItems() {
+    //Fruit types
     const items = this.fruits;
     return Array.from({ length: this.fruits.length }, () => items[Math.floor(Math.random() * items.length)]);
   }
 
   openDialogCurrency(event: Event) {
     event.preventDefault();
+    //Currency exchange dialog
     this.dialog.open(CurrencyComponent, {
       width: '420px'
     });
 
   }
+
   launchConfetti() {
+    //animation on winning
     confetti({
       particleCount: 150,
       spread: 70,

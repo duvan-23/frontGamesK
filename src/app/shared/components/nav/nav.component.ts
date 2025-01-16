@@ -27,7 +27,9 @@ export class NavComponent {
   }
 
   logOut() {
+    //Remove token
     this.authService.logOut();
+    //Redirect to login
     this.router.navigate(['/login']);
   }
 }

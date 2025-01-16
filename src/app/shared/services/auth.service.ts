@@ -16,12 +16,14 @@ export class AuthService {
   private platformId = inject(PLATFORM_ID);
 
   login(user:string, password:string){
+    //Send parameters user and password
     return this.http.post<Auth>(`${this.apiUrl}auth/login`,{
       username: user,
       password: password
     }).pipe(
       tap((data) => {
         if(data.token){
+          //If it is succesfull, save token
           this.saveToken(data.token);
         }
       })
@@ -30,6 +32,7 @@ export class AuthService {
 
   saveToken(token:string){
     if (isPlatformBrowser(this.platformId)) {
+      //Save cookie token
       setCookie('token', token, { expires: 1, path: '/', sameSite: 'Strict' });
     }
     
@@ -37,6 +40,7 @@ export class AuthService {
 
   getToken():string | undefined{
     if (isPlatformBrowser(this.platformId)) {
+      //Get cookie token
       return getCookie('token');
     }
     return undefined;
@@ -44,11 +48,13 @@ export class AuthService {
 
   logOut(){
     if (isPlatformBrowser(this.platformId)) {
+      //Remove cookies
       removeCookie('token');
       removeCookie('coins');
     }
   }
 
+  //Check token
   isValidToken(){
     const token = this.getToken();
     if(!token){

@@ -13,6 +13,7 @@ export class GameComponent {
   @Input ({required: true}) game!: IPropertiesGame;
   dialog = inject(MatDialog);
 
+  //Open dialog game details
   seeDetails(event: Event) {
     event.preventDefault();
     this.dialog.open(DetailGameComponent, {

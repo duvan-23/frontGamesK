@@ -25,11 +25,15 @@ export class GameListComponent {
     this.getGames();
   }
 
+  //get All games
   getGames(){
     this.gamesService.getGames().subscribe({
       next:(data) => {
+        //Set Games
         this.gamesService.games.set(data.games);
+        //Set page
         this.gamesService.filterDataByPage(this.pageNumber());
+        //Set total games
         this.gamesService.pageTotal.set(Math.ceil(this.games().length / this.pageSize));
       },
       error:(e)=>{
@@ -37,16 +41,17 @@ export class GameListComponent {
       }
     });
   }
-
+  //Page change in grid
   onPageChange(pageNumber: number): void {
     this.filterData(pageNumber);
   }
-
+  //Set new page games
   filterData(pageNumber: number){
     this.gamesService.filterDataByPage(pageNumber);
     this.pageNumber.set(this.gamesService.pageNumber());
   }
 
+  //Get games filtered by title
   searchName(title:any){
     if(title != ""){
       this.gamesService.filterDataByName(title);

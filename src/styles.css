@@ -4,30 +4,45 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-mat-dialog-container, .mat-mdc-dialog-container .mdc-dialog__surface{
-    background-color: transparent !important;
-    box-shadow: none !important;
+html,
+body {
+  height: 100%;
 }
- mat-option, .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper  {
-    background-color: rgb(107 114 128 / var(--tw-bg-opacity, 1)) !important; /* Tailwind's bg-gray-400 equivalent */
-  }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+mat-dialog-container,
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+mat-option,
+.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled)
+  .mat-mdc-text-field-wrapper {
+  background-color: rgb(
+    107 114 128 / var(--tw-bg-opacity, 1)
+  ) !important; /* Tailwind's bg-gray-400 equivalent */
+}
 
 mat-option:hover {
-    background: rgb(156 163 175 / var(--tw-bg-opacity, 1)) !important;
+  background: rgb(156 163 175 / var(--tw-bg-opacity, 1)) !important;
 }
-mat-option, .mat-mdc-form-field-error, .mat-mdc-select-arrow, .mat-mdc-form-field-required-marker, .mat-mdc-select-value {
-    color: white !important;
+mat-option,
+.mat-mdc-form-field-error,
+.mat-mdc-select-arrow,
+.mat-mdc-form-field-required-marker,
+.mat-mdc-select-value {
+  color: white !important;
 }
-mat-select{
-  background-color: transparent!important;
+mat-select {
+  background-color: transparent !important;
 }
 .mat-mdc-snack-bar-container {
-    &.alert-login {
-      --mdc-snackbar-container-color: rgb(23 37 84 / var(--tw-bg-opacity, 1));
-      --mat-mdc-snack-bar-button-color: white;
-      --mdc-snackbar-supporting-text-color: white;
-      --mat-snack-bar-button-color: red;
-    }
+  &.alert-login {
+    --mdc-snackbar-container-color: rgb(23 37 84 / var(--tw-bg-opacity, 1));
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-supporting-text-color: white;
+    --mat-snack-bar-button-color: red;
   }
+}
