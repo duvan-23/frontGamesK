@@ -16,7 +16,9 @@ export class NavComponent {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
-  
+  closeMenu(){
+    this.menuOpen = false;
+  }
 
   preventReload(event: Event, targetUrl: string): void {
     if (this.router.url === targetUrl) {
