@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    API_URL: 'http://localhost:3000/',
+    API_URL: 'https://backgamesk-production.up.railway.app/',
     URL_EXCEPTION : ['auth/login']
 };
