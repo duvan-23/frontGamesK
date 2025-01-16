@@ -1,0 +1,34 @@
+<div class="currency/container p-6 bg-blue-950 shadow-black shadow-md rounded-lg">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl text-white font-medium">Game Detail</h2>
+      <button mat-icon-button (click)="onClose()">
+        <mat-icon class="text-blue-200">close</mat-icon>
+      </button>
+    </div>
+    <mat-divider class="bg-white"></mat-divider>
+  
+    <div mat-dialog-content class="mt-4">
+        <!-- Game Image -->
+      <div class="mb-4 flex justify-center" *ngIf="data.thumb">
+        <img [src]="data.thumb.url" alt="Game Image" class="w-fit rounded-lg shadow-lg h-28 md:h-36">
+      </div>
+      <!-- Game Title -->
+      <div class="mb-4">
+        <h3 class="text-lg text-white font-medium">
+            Game Title :
+            <span class="text-gray-300 text-base">{{ data.title }}</span>
+        </h3>
+      </div>
+  
+      <!-- Game provider -->
+      <div class="mb-4">
+        <h3 class="text-lg text-white font-medium">
+            Provider Name :
+            <span class="text-gray-300 text-base">{{ data.providerName }}</span>
+        </h3>
+      </div>
+  
+
+    </div>
+  </div>
+  

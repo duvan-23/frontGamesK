@@ -1,18 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { RouterLinkWithHref } from '@angular/router';
+import { Component, Input, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { IPropertiesGame } from 'app/home/models/game';
-
+import { DetailGameComponent } from '../detail-game/detail-game.component';
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [RouterLinkWithHref, CommonModule],
+  imports: [ CommonModule],
   templateUrl: './game.component.html'
 })
 export class GameComponent {
   @Input ({required: true}) game!: IPropertiesGame;
+  dialog = inject(MatDialog);
 
-  seeDetails() {
+  seeDetails(event: Event) {
+    event.preventDefault();
+    this.dialog.open(DetailGameComponent, {
+      width: '320px',
+      data: { ...this.game }, 
+    });
 
   }
 }

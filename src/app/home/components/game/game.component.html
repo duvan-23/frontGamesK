@@ -1,7 +1,7 @@
 <div class="group rounded-md shadow-black shadow-lg overflow-hidden h-full">
     <a 
-        [routerLink]="['/product', game.id]" 
-        class="block w-full overflow-hidden "
+        (click)="seeDetails($event)"
+        class="block w-full overflow-hidden cursor-pointer"
     >
         <img 
             [src]="game.thumb ? game.thumb.url : 'assets/logo_casino.jpeg'" 
