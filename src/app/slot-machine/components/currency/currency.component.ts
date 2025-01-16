@@ -46,6 +46,6 @@ export class CurrencyComponent {
   currencyChange(){
     let {selectedOption} = this.form.value;
     this.currencyValue = selectedOption;
-    this.calculate = selectedOption * this.coins;
+    this.calculate = +(selectedOption * this.coins).toFixed(6);
   }
 }
