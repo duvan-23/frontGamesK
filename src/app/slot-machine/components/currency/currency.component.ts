@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';  
 import { CurrencyService } from 'app/slot-machine/services/currency.service';
 import { SlotMachineService } from 'app/slot-machine/services/slot-machine.service';
@@ -15,7 +15,6 @@ import {MatSelectModule} from '@angular/material/select';
   templateUrl: './currency.component.html'
 })
 export class CurrencyComponent {
-  data = inject(MAT_DIALOG_DATA);  
   dialogRef = inject(MatDialogRef<CurrencyComponent>); 
   currencyService = inject(CurrencyService);
   slotService = inject(SlotMachineService);

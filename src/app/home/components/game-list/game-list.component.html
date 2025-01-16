@@ -10,7 +10,7 @@
                 <h3 >Page {{pageNumber()}} of {{pageTotal()}}</h3>
                 <h5 >Total games: {{games().length}} </h5>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-[95%] md:w-full mt-4">
+            <div class="grid grid-cols-2 md:grid-cols-4  gap-6 w-[95%] md:w-full mt-4">
                 @for (item of gamesFilterPage(); track $index) {
                     <app-game
                         [game]="item"
