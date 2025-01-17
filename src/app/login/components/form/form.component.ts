@@ -39,7 +39,7 @@ export class FormComponent {
       this.authService.login(username, password).subscribe({
         next: () => {
           //Success, redirect to home
-          this.router.navigate(['/']);
+          this.router.navigate(['/casino/home']);
         }, error: () => {
           //Error, show alert
           this._snackBar.open('Invalid credentials', "close", {duration: 2000, panelClass: ['alert-login']});

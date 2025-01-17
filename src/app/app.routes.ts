@@ -8,12 +8,12 @@ import { loginGuard } from './guards/login.guard';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'casino',
         component: LayoutComponent,
         canActivate: [authGuard],
         children: [
             {
-                path: '', component: HomeComponent
+                path: 'home', component: HomeComponent
             },
             {
                 path: 'slot-machine', component: SlotMachineComponent
@@ -27,6 +27,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: ''
+        redirectTo: 'login'
     },
 ];

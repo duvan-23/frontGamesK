@@ -9,7 +9,7 @@ export const loginGuard: CanActivateFn = (route, state) => {
   const isValidToken = authService.isValidToken();
   if (isValidToken) {
     //If the token is valid and they try to access the login by modifying the route, it redirects to home
-    router.navigate(['/']);
+    router.navigate(['/casino/home']);
   }
   return true;
 };

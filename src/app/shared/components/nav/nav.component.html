@@ -1,9 +1,9 @@
 <nav class="fixed top-0 left-0 w-full bg-blue-950 shadow-black shadow-md z-20">
   <div class="container mx-auto px-6 py-4 flex items-center justify-between">
     <a
-      href="/"
-      [routerLink]="['/']"
-      (click)="preventReload($event, '/'); closeMenu()"
+      href="/casino/home"
+      [routerLink]="['/casino/home']"
+      (click)="preventReload($event, '/casino/home'); closeMenu()"
       class="flex items-center space-x-2"
     >
       <img
@@ -38,18 +38,18 @@
 
     <div class="hidden md:flex space-x-8 text-white font-medium text-lg">
       <a
-        href="/"
-        (click)="preventReload($event, '/')"
-        [routerLink]="['/']"
+        href="/casino/home"
+        (click)="preventReload($event, '/casino/home')"
+        [routerLink]="['/casino/home']"
         routerLinkActive=" font-bold border-b-2 border-purple-500 "
         [routerLinkActiveOptions]="{ exact: true }"
         class="hover:text-gray-300 transition-all duration-300 hover:scale-110"
         >Home</a
       >
       <a
-        href="/slot-machine"
-        (click)="preventReload($event, '/slot-machine')"
-        [routerLink]="['/slot-machine']"
+        href="/casino/slot-machine"
+        (click)="preventReload($event, '/casino/slot-machine')"
+        [routerLink]="['/casino/slot-machine']"
         routerLinkActive="font-bold border-b-2 border-purple-500"
         [routerLinkActiveOptions]="{ exact: true }"
         class="hover:text-gray-300 transition-all duration-300 hover:scale-110"
@@ -69,18 +69,18 @@
     [ngClass]="{ hidden: !menuOpen, block: menuOpen }"
   >
     <a
-      href="/"
-      (click)="preventReload($event, '/'); closeMenu()"
-      [routerLink]="['/']"
+      href="/casino/home"
+      (click)="preventReload($event, '/casino/home'); closeMenu()"
+      [routerLink]="['/casino/home']"
       routerLinkActive=" font-bold border-b-2 border-purple-500 "
       [routerLinkActiveOptions]="{ exact: true }"
       class="block hover:text-gray-300 transition-all duration-300"
       >Home</a
     >
     <a
-      href="/slot-machine"
-      (click)="preventReload($event, '/slot-machine'); closeMenu()"
-      [routerLink]="['/slot-machine']"
+      href="/casino/slot-machine"
+      (click)="preventReload($event, '/casino/slot-machine'); closeMenu()"
+      [routerLink]="['/casino/slot-machine']"
       routerLinkActive=" font-bold border-b-2 border-purple-500 "
       [routerLinkActiveOptions]="{ exact: true }"
       class="block hover:text-gray-300 transition-all duration-300"
