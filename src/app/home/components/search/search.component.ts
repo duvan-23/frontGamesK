@@ -20,8 +20,10 @@ export class SearchComponent {
       search: ['']
     });
     this.searchForm.get('search')?.valueChanges.pipe(
-        debounceTime(500)  // Wait for 500ms after the user stops typing to avoid making multiple service calls
-      )
+      debounceTime(500)  
+      // Wait for 500ms after the user stops 
+      //typing to avoid making multiple service calls
+    )
     .subscribe((searchTerm: string) => {
       // Emit the search term 
       this.searchName.emit(searchTerm);
